@@ -12,8 +12,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const getEmailTemplate = (templateName: string, category: string = 'auth'): string => {
-  const templatePath = path.resolve(__dirname, `../../infrastructure/email/templates/${category}/${templateName}.html`);
+const getEmailTemplate = (templateName: string): string => {
+  const templatePath = path.resolve(__dirname, `../../infrastructure/email/templates/${templateName}.html`);
+
+  console.log(templatePath)
   try {
     return fs.readFileSync(templatePath, "utf-8");
   } catch(err) {

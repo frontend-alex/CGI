@@ -5,7 +5,7 @@ import {
   findByCodeAndType, 
   markAsUsed, 
   invalidateUserOtps, 
-} from "@/core/repositories/auth/otp.repository";
+} from "@/infrastructure/repositories/auth/otp.repository";
 import { createError } from "@/core/error/errors";
 import { EmailUtils } from "@/infrastructure/email/email";
 

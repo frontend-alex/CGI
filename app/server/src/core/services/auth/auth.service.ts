@@ -7,9 +7,9 @@ import { createError } from "@/core/error/errors";
 import { DecodedUser } from "@/api/middlewares/auth";
 import { AccountProviders } from "@shared/types/user";
 import { EmailUtils } from "@/infrastructure/email/email";
-import { jwtUtils } from "@/infrastructure/email/auth/jwt/jwt";
-import { UserRepo } from "@/core/repositories/user/user.repository";
-import { AuthRepo } from "@/core/repositories/auth/auth.repository";
+import { jwtUtils } from "@/infrastructure/auth/jwt/jwt";
+import { UserRepo } from "@/infrastructure/repositories/user/user.repository";
+import { AuthRepo } from "@/infrastructure/repositories/auth/auth.repository";
 import { sendOtp as sendOtpService, verifyOtp } from "@/core/services/auth/otp.service";
 
 const login = async (email: string, password: string) => {

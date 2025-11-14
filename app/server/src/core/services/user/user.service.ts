@@ -1,5 +1,5 @@
 import { createError } from "@/core/error/errors";
-import { UserRepo } from "@/core/repositories/user/user.repository";
+import { UserRepo } from "@/infrastructure/repositories/user/user.repository";
 
 const updateUser = async (
   userId: string,

@@ -1,4 +1,4 @@
-import { UserRepo } from "@/core/repositories/user/user.repository";
+import { UserRepo } from "@/infrastructure/repositories/user/user.repository";
 import { UserService } from "@/core/services/user/user.service";
 import { NextFunction, Request, Response } from "express";
 
