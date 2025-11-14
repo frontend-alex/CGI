@@ -1,10 +1,13 @@
-import AppLogo from "./AppLogo";
-
-import { Button } from "./ui/button";
 import { lazy, Suspense } from "react";
+
 import { Link } from "react-router-dom";
-import { User, Star } from "lucide-react";
+import { Star, User } from "lucide-react";
+
+import { ROUTES } from "@/config/routes";
 import { useAuth } from "@/contexts/AuthContext";
+
+import AppLogo from "./AppLogo";
+import { Button } from "./ui/button";
 import { UserDropdownSkeleton } from "./dropdowns/user-dropdown";
 
 const LazyUserDropdown = lazy(
@@ -39,10 +42,10 @@ const Navbar = () => {
         </Suspense>
       ) : (
         <div className="flex items-center gap-3">
-          <Link to="/login">
+          <Link to={ROUTES.PUBLIC.LOGIN}>
             <Button variant={"ghost"}>Log in</Button>
           </Link>
-          <Link to="/register">
+          <Link to={ROUTES.PUBLIC.REGISTER}>
             <Button>
               <User /> Create an account
             </Button>

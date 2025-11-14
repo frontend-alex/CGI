@@ -1,19 +1,16 @@
-import { Suspense, lazy } from "react";
+import { lazy, Suspense } from "react";
+
 import { Link } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
+
+import { ROUTES } from "@/config/routes";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import type { RegisterFormProps } from "@/types/types";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+
 import { ProviderButtons } from "../buttons/provider-buttons";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 
 const PasswordStrengthChecks = lazy(
   () => import("@/components/PasswordChecker")
@@ -131,7 +128,7 @@ export function RegisterForm({
                 </div>
                 <div className="text-center text-sm">
                   Already have an account?{" "}
-                  <Link to="/login" className="underline underline-offset-4">
+                  <Link to={ROUTES.PUBLIC.LOGIN}  className="underline underline-offset-4">
                     Log in
                   </Link>
                 </div>

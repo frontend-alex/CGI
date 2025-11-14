@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { makeForm } from "@/lib/utils";
 import { API } from "@/config/config";
+import { ROUTES } from "@/config/routes";
 
 
 const ProfileData = () => {
@@ -152,7 +153,7 @@ const ProfileData = () => {
             <CircleAlert size={15} className="text-yellow-500" />
             <p className="text-yellow-500 text-xs">Email not verified</p>{" "}
             <Link
-              to={`/verify-email?email=${user?.email}`}
+              to={`${ROUTES.PUBLIC.VERIFY_EMAIL}?email=${user?.email}`}
               className="text-xs underline underline-offset-4"
             >
               Verify now
