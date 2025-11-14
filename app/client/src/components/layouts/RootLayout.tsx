@@ -1,9 +1,11 @@
-import Loading from "@/components/Loading";
-
-import { useAuth } from "@/contexts/AuthContext";
-import { AppSidebar } from "../sidebars/main-sidebar";
-import { Separator } from "@radix-ui/react-separator";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+
+import { ROUTES } from "@/config/routes";
+import Loading from "@/components/Loading";
+import { useAuth } from "@/contexts/AuthContext";
+import { Separator } from "@radix-ui/react-separator";
+
+import { AppSidebar } from "../sidebars/main-sidebar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 
 const RootLayout = () => {
@@ -14,7 +16,7 @@ const RootLayout = () => {
   if (isLoading) return <Loading />;
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to={ROUTES.PUBLIC.LOGIN} state={{ from: location }} replace />;
   }
 
   return (

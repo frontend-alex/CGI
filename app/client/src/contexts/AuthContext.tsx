@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useApiMutation, useApiQuery } from "@/hooks/hook";
 import { createContext, useContext, useMemo } from "react";
+import { API } from "@/config/config";
+import { ROUTES } from "@/config/routes";
 
 type AuthContextType = {
   user: User | null;
@@ -25,7 +27,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const { data, isLoading, error, refetch } = useApiQuery<{ user: User }>(
     ["auth", "me"],
-    "/auth/me",
+    API.USER.GET_ME,
     {
       staleTime: 1000 * 60 * 10, 
       cacheTime: 1000 * 60 * 15, 
@@ -35,12 +37,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const { mutateAsync: logoutMutation } = useApiMutation(
     "POST",
-    "/auth/logout",
+    API.AUTH.PRIVATE.LOGOUT,
     {
       onSuccess: (data) => {
         toast.success(data.message);
         queryClient.setQueryData(["auth", "me"], null);
-        navigate("/", { replace: true });
+        navigate(ROUTES.PUBLIC.LANDING, { replace: true });
       },
     }
   );
