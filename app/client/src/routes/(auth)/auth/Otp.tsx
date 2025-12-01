@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { API } from "@/config/config";
 import { ROUTES } from "@/config/routes";
-import AppLogo from "@/components/AppLogo";
+import AppLogo from "@/components/logo";
 import { useApiMutation } from "@/hooks/hook";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OtpForm } from "@/components/auth/forms/otp/otp-form-02";

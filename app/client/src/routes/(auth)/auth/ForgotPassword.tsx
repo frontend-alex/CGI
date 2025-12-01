@@ -1,5 +1,5 @@
 import z from "zod";
-import AppLogo from "@/components/AppLogo";
+import AppLogo from "@/components/logo";
 
 import { toast } from "sonner";
 import { makeForm } from "@/lib/utils";

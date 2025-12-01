@@ -1,4 +1,4 @@
-import AppLogo from "../AppLogo";
+import AppLogo from "../logo";
 
 import {
   Frame,
@@ -108,7 +108,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* <NavSecondar items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
-        <Suspense fallback={<UserDropdownSkeleton/>}>
+        <Suspense fallback={<UserDropdownSkeleton />}>
           <LazyUserDropdown />
         </Suspense>
       </SidebarFooter>

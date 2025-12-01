@@ -1,4 +1,4 @@
-import AppLogo from "@/components/AppLogo";
+import AppLogo from "@/components/logo";
 
 import { toast } from "sonner";
 import { useApiMutation } from "@/hooks/hook";

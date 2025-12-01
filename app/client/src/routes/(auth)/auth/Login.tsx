@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { API } from "@/config/config";
 import { ROUTES } from "@/config/routes";
-import AppLogo from "@/components/AppLogo";
+import AppLogo from "@/components/logo";
 import { useAuth } from "@/contexts/AuthContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useApiMutation, useApiQuery } from "@/hooks/hook";

@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import AppLogo from "@/components/AppLogo";
+import AppLogo from "@/components/logo";
 import { RegisterForm } from "@/components/auth/forms/register/register-form-03";
 import { useApiMutation, useApiQuery } from "@/hooks/hook";
 import {

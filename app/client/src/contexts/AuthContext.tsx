@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useApiMutation, useApiQuery } from "@/hooks/hook";
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useMemo, useCallback } from "react";
 import { API } from "@/config/config";
 import { ROUTES } from "@/config/routes";
 
@@ -29,9 +29,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     ["auth", "me"],
     API.USER.GET_ME,
     {
-      staleTime: 1000 * 60 * 10, 
-      cacheTime: 1000 * 60 * 15, 
-      enabled: true, 
+      staleTime: 1000 * 60 * 10,
+      cacheTime: 1000 * 60 * 15,
+      enabled: true,
     }
   );
 
@@ -47,9 +47,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   );
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     await logoutMutation(undefined);
-  };
+  }, [logoutMutation]);
 
   const contextValue = useMemo<AuthContextType>(() => {
     return {
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [data, isLoading, error, refetch, logout]);
 
   return (
-      <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 

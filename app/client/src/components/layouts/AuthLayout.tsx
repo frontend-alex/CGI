@@ -1,21 +1,11 @@
-import Loading from "@/components/Loading";
-import { ROUTES } from "@/config/routes";
-
-import { useAuth } from "@/contexts/AuthContext";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
-  const { isLoading, isAuthenticated } = useAuth();
-
-  if (isLoading) return <Loading/>;
-
-  if (isAuthenticated) {
-    return <Navigate to={ROUTES.BASE.APP}/>;
-  }
-
-  return <Outlet />;
+  return (
+    <div className="w-full h-full">
+      <Outlet />
+    </div>
+  );
 };
 
 export default AuthLayout;
-
-

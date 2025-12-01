@@ -1,12 +1,15 @@
+import { env } from "./env";
+
 export const BASE_PATHS = {
   APP: "/app/v1",
   AUTH: "/auth",
 } as const;
 
 export const PUBLIC_ROUTES = {
-  LANDING: "/",
+  LANDING: env.siteUrl,
   LOGIN: "/auth/login",
   REGISTER: "/auth/register",
+  CONTACT: "/contact",
   FORGOT_PASSWORD: "/auth/forgot-password",
   RESET_PASSWORD: "/auth/reset-password",
   VERIFY_EMAIL: "/auth/verify-email",
