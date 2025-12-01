@@ -30,6 +30,16 @@ const App = () => {
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route path="/" element={<Navigate to={ROUTES.PUBLIC.LOGIN} replace />} />
+
+        <Route
+          path={ROUTES.PUBLIC.VERIFY_EMAIL}
+          element={
+            <TitleWrapper title="CGI | Verify Email">
+              <Otp />
+            </TitleWrapper>
+          }
+        />
+
         {/* AUTH ROUTES (Guarded against logged-in users) */}
         <Route
           element={
@@ -38,14 +48,7 @@ const App = () => {
             </AuthGuard>
           }
         >
-          <Route
-            path={ROUTES.PUBLIC.VERIFY_EMAIL}
-            element={
-              <TitleWrapper title="CGI | Verify Email">
-                <Otp />
-              </TitleWrapper>
-            }
-          />
+
           <Route
             path={ROUTES.PUBLIC.LOGIN}
             element={

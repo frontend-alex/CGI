@@ -146,7 +146,9 @@ class AppServer {
           `Server running in ${env.NODE_ENV} mode on ${env.HOST}:${env.PORT}`
         );
         logger.info(`CORS allowed origins: ${env.CORS_ORIGINS.join(", ")}`);
+        logger.info(`Static Site running at http://localhost:3000`)
       });
+
 
       // Configure error handlers
       this.setupErrorHandlers();

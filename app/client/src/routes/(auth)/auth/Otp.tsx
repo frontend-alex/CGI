@@ -11,6 +11,7 @@ import { useApiMutation } from "@/hooks/hook";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OtpForm } from "@/components/auth/forms/otp/otp-form-02";
 import { otpSchema, type OtpSchemaType } from "@shared/schemas/auth/auth.schema";
+import { useAuth } from "@/contexts/AuthContext";
 
 const COOLDOWN_DURATION = 60;
 const STORAGE_KEY = "otp_last_sent_at";
@@ -19,6 +20,8 @@ const Otp = () => {
   const navigate = useNavigate();
   const email = new URLSearchParams(location.search).get("email") ?? "";
   const [cooldown, setCooldown] = useState(0);
+
+  const { refetch } = useAuth();
 
   const otpForm = useForm<OtpSchemaType>({
     resolver: zodResolver(otpSchema),
@@ -29,7 +32,10 @@ const Otp = () => {
     "POST",
     API.AUTH.PUBLIC.SEND_OTP,
     {
-      onSuccess: (data) => toast.success(data.message),
+      onSuccess: (data) => {
+        toast.success(data.message)
+        refetch()
+      },
       onError: (err) => {
         toast.error(err.response?.data?.message || "Failed to send OTP");
       },
