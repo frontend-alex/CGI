@@ -1,4 +1,4 @@
-import AppLogo from "../logo";
+import { SidebarLogo } from "../logo";
 
 import {
   Frame,
@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/sidebar";
 import { lazy, Suspense } from "react";
 import { NavMain } from "./main-nav";
-import { NavProjects } from "./secondary-nav";
 import { UserDropdownSkeleton } from "@/components/dropdowns/user-dropdown";
 import { ROUTES } from "@/config/routes";
 import { useAuth } from "@/contexts/AuthContext";
@@ -94,18 +93,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <div>
-                <AppLogo />
-              </div>
+            <SidebarMenuButton size="lg">
+              <SidebarLogo />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        {/* <NavSecondar items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
         <Suspense fallback={<UserDropdownSkeleton />}>

@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
   pull_request:
-    branches: [main, master]
+    branches: [master]
 
 jobs:
   build:
@@ -41,5 +41,6 @@ jobs:
 
       - name: Turbo build with remote caching
         run: pnpm build
+
         env:
           TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}

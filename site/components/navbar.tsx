@@ -24,20 +24,20 @@ const Navbar = () => {
                 </div>
                 <ul className="hidden lg:flex items-center gap-5 navbar-links">
                     <li>
-                        <Link href={ROUTES.APP.LOGIN}>
+                        <Link href={ROUTES.PUBLIC.LANDING}>
                             Contact
                         </Link>
                     </li>
                     <div className="w-px h-10 bg-black" />
                     <li>
-                        <Link className="flex items-center gap-2" href={ROUTES.APP.REGISTER}>
+                        <Link className="flex items-center gap-2" href={ROUTES.PUBLIC.LANDING}>
                             <Globe size={18} />
                             Global
                         </Link>
                     </li>
                     <div className="w-px h-10 bg-black" />
                     <li>
-                        <Link href={ROUTES.APP.REGISTER}>
+                        <Link href={ROUTES.PUBLIC.LANDING}>
                             En
                         </Link>
                     </li>
