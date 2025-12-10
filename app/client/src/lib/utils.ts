@@ -24,3 +24,28 @@ export const makeForm = <T extends z.ZodTypeAny>(
     resolver: zodResolver(schema),
     defaultValues,
   });
+
+
+export const getMonthName = (monthNumber: number): string => {
+  const MONTHS = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  return MONTHS[monthNumber - 1] || "";
+};
+
+export const getWeekdayName = (year: number, month: number, day: number): string => {
+  const WEEKDAYS = [
+    "Sunday", "Monday", "Tuesday", "Wednesday",
+    "Thursday", "Friday", "Saturday"
+  ];
+
+  const date = new Date(year, month - 1, day);
+
+  return WEEKDAYS[date.getDay()];
+};
+
+export const randomItem = <T>(items: T[]): T => {
+  return items[Math.floor(Math.random() * items.length)];
+};

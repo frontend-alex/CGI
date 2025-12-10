@@ -1,23 +1,20 @@
+import BreadCrumps from "../bread-crumbs";
+
 import { Outlet } from "react-router-dom";
-import { Separator } from "@radix-ui/react-separator";
 
 import { AppSidebar } from "../sidebars/main-sidebar";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
+import { SidebarProvider } from "../ui/sidebar";
 
 const RootLayout = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-
-      <SidebarInset className="p-5">
-        <SidebarTrigger className="-ml-1" />
-        <Separator
-          orientation="vertical"
-          className="mr-2 data-[orientation=vertical]:h-4"
-        />
-
-        <Outlet />
-      </SidebarInset>
+      <main className="flex flex-col w-full bg-background">
+        <BreadCrumps />
+        <div className="p-5">
+          <Outlet />
+        </div>
+      </main>
     </SidebarProvider>
   );
 };

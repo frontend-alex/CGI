@@ -12,14 +12,14 @@ import { Button } from "@/components/ui/button";
 import { getUserInitials } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChevronsUpDown, Layout, LogOut, Sparkles, User } from "lucide-react";
+import { ChevronsUpDown, Layout, LogOut, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/config/routes";
 
 const dropdownLinks = [
   {
     name: "Dashboard",
-    url: ROUTES.BASE.APP,
+    url: ROUTES.AUTHENTICATED.DASHBOARD,
     icon: Layout,
   },
   {
@@ -48,9 +48,11 @@ export const UserDropdownSkeleton = () => {
 export default function UserDropdown({
   align = "end",
   side = "bottom",
+  size = "lg",
 }: {
   align?: "start" | "center" | "end";
   side?: "top" | "right" | "bottom" | "left";
+  size?: "lg" | "sm";
 }) {
   const { logout, user, isLoading } = useAuth();
 
@@ -63,21 +65,25 @@ export default function UserDropdown({
         <div>
           <Button
             variant="ghost"
-            className="no-ring h-12 w-full justify-start gap-3 px-3 data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+            className="no-ring px-0 w-max hover:bg-transparent justify-start gap-3 data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
           >
-            <Avatar className="h-8 w-8 rounded-lg">
+            <Avatar className="size-9 rounded-full">
               {/* <AvatarImage src={user.avatar || "/placeholder.svg"} alt={user.name} /> */}
               <AvatarFallback className="rounded-lg">
                 {getUserInitials(user.username)}
               </AvatarFallback>
             </Avatar>
-            <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">{user.username}</span>
-              <span className="truncate text-xs text-muted-foreground">
-                {user?.email}
-              </span>
-            </div>
-            <ChevronsUpDown className="ml-auto size-4" />
+            {size === "lg" ? (
+              <>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">{user.username}</span>
+                  <span className="truncate text-xs text-muted-foreground">
+                    {user?.email}
+                  </span>
+                </div>
+                <ChevronsUpDown className="ml-auto size-4" />
+              </>
+            ) : null}
           </Button>
         </div>
       </DropdownMenuTrigger>
@@ -89,7 +95,7 @@ export default function UserDropdown({
       >
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-            <Avatar className="h-8 w-8 rounded-lg">
+            <Avatar className="h-8 w-8 rounded-full">
               {/* <AvatarImage src={user.avatar || "/placeholder.svg"} alt={user.name} /> */}
               <AvatarFallback className="rounded-lg">
                 {getUserInitials(user.username)}

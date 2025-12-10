@@ -13,7 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ProviderButtons } from "../buttons/provider-buttons";
 
 const PasswordStrengthChecks = lazy(
-  () => import("@/components/PasswordChecker")
+  () => import("@/components/password-checker")
 );
 
 export function RegisterForm({
@@ -128,7 +128,7 @@ export function RegisterForm({
                 </div>
                 <div className="text-center text-sm">
                   Already have an account?{" "}
-                  <Link to={ROUTES.PUBLIC.LOGIN}  className="underline underline-offset-4">
+                  <Link to={ROUTES.PUBLIC.LOGIN} className="underline underline-offset-4">
                     Log in
                   </Link>
                 </div>

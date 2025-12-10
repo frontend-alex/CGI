@@ -1,4 +1,4 @@
-import type { User } from "@shared/types/user";
+import { UserRoles, type User } from "@shared/types/user";
 import type { ApiError } from "@shared/types/api";
 
 import { toast } from "sonner";
@@ -14,8 +14,11 @@ type AuthContextType = {
   isLoading: boolean;
   error: ApiError | null;
   isAuthenticated: boolean;
+  isUserUpdating: boolean;
+  isAdmin: boolean;
   logout: () => void;
   refetch: () => void;
+  update: (data: FormData) => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -47,20 +50,37 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   );
 
+  const { mutateAsync: updateMutation, isPending: isUserUpdating } = useApiMutation<
+    void,
+    FormData
+  >("PUT", API.AUTH.PRIVATE.UPDATE_PASSWORD, {
+    invalidateQueries: [["auth", "me"]],
+    onSuccess: (data) => {
+      toast.success(data.message)
+    },
+  });
+
   const logout = useCallback(async () => {
     await logoutMutation(undefined);
   }, [logoutMutation]);
 
+  const update = useCallback(async (data: FormData) => {
+    await updateMutation(data);
+  }, [updateMutation]);
+
   const contextValue = useMemo<AuthContextType>(() => {
     return {
       user: data?.data?.user ?? null,
+      isAdmin: data?.data?.user?.role === UserRoles.Admin,
       isLoading,
       error,
+      isUserUpdating,
       isAuthenticated: Boolean(data?.data?.user) && !error,
       logout,
       refetch,
+      update,
     };
-  }, [data, isLoading, error, refetch, logout]);
+  }, [data, isLoading, error, refetch, logout, isUserUpdating, update]);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

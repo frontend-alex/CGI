@@ -12,7 +12,7 @@ import {
 import { LoaderCircle } from "lucide-react";
 import type { ResetPasswordFormProps } from "@/types/types";
 
-const PasswordStrengthChecks = lazy(() => import("@/components/PasswordChecker"))
+const PasswordStrengthChecks = lazy(() => import("@/components/password-checker"))
 
 export function ResetPasswordForm({
   resetPasswordForm,

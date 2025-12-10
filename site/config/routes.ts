@@ -17,7 +17,7 @@ export const PUBLIC_ROUTES = {
 export const APP_ROUTES = {
   LOGIN: `${env.appUrl}/auth/login`,
   REGISTER: `${env.appUrl}/auth/register`,
-  DASHBOARD: `${env.appUrl}/app/v1`,
+  DASHBOARD: `${env.appUrl}/app/v1/dashboard`,
   PROFILE: `${env.appUrl}/app/v1/profile`,
   SETTINGS: `${env.appUrl}/app/v1/settings`,
 } as const;

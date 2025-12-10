@@ -5,13 +5,19 @@ export enum AccountProviders {
   Facebook = 'Facebook',
 }
 
+export enum UserRoles {
+  Admin = 'Admin',
+  User = 'User',
+}
+
 export type User = {
   _id: string;
   username: string;
   email: string;
-  provider: AccountProviders; 
+  provider: AccountProviders;
   emailVerified: boolean;
   hasPassword: boolean;
   createdAt: string;
   updatedAt: string;
+  role: UserRoles;
 }

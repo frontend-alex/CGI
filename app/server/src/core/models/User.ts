@@ -2,13 +2,15 @@ import bcrypt from "bcrypt";
 
 import mongoose, { Schema, Document } from "mongoose";
 import { AccountProviders } from "@shared/types/user";
+import { UserRoles } from "@shared/types/user";
 
 interface IUser extends Document {
-  id:string;
+  id: string;
   username: string;
   email: string;
   password: string;
   provider: keyof typeof AccountProviders;
+  role: keyof typeof UserRoles;
   hasPassword: boolean;
   emailVerified: boolean;
   imageUrl?: string;
@@ -42,6 +44,11 @@ const userSchema = new Schema(
       type: String,
       enum: Object.values(AccountProviders),
       default: AccountProviders.Credentials,
+    },
+    role: {
+      type: String,
+      enum: Object.values(UserRoles),
+      default: UserRoles.User,
     },
     password: {
       type: String,

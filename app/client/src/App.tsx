@@ -1,8 +1,9 @@
+import Loading from "@/components/loading";
+
 import { Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
-import Loading from "@/components/Loading";
-import TitleWrapper from "@/components/TitleWrapper";
+import TitleWrapper from "@/components/title-wrapper";
 
 // Public pages
 import {
@@ -11,11 +12,12 @@ import {
   ForgotPassword,
   AuthCallback,
   Otp,
-  ResetPassword
+  ResetPassword,
+  NotFound
 } from "@/routes/(auth)";
 
 // Private pages
-import { Dashboard, Profile, Settings } from "@/routes/(root)";
+import { Event, Dashboard, Profile, Settings, Events } from "@/routes/(root)";
 
 import { ROUTES } from "@/config/routes";
 
@@ -24,12 +26,16 @@ import { AuthGuard, RootGuard } from "@/components/guards/index";
 
 // Layouts
 import { AuthLayout, RootLayout } from "@/components/layouts/index";
+import AdminGuard from "./components/guards/AdminGuard";
+import { AdminDashboard, CreateEvent } from "./routes/(admin)";
 
 const App = () => {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route path="/" element={<Navigate to={ROUTES.PUBLIC.LOGIN} replace />} />
+
+        <Route path="*" element={<NotFound />} />
 
         <Route
           path={ROUTES.PUBLIC.VERIFY_EMAIL}
@@ -106,10 +112,28 @@ const App = () => {
           }
         >
           <Route
-            path={ROUTES.BASE.APP}
+            path={ROUTES.AUTHENTICATED.DASHBOARD}
             element={
               <TitleWrapper title="CGI | Dashboard">
                 <Dashboard />
+              </TitleWrapper>
+            }
+          />
+
+          <Route
+            path={ROUTES.AUTHENTICATED.EVENTS}
+            element={
+              <TitleWrapper title="CGI | Events">
+                <Events />
+              </TitleWrapper>
+            }
+          />
+
+          <Route
+            path={`${ROUTES.AUTHENTICATED}/events/:eventId`}
+            element={
+              <TitleWrapper title="CGI | Event">
+                <Event />
               </TitleWrapper>
             }
           />
@@ -132,9 +156,32 @@ const App = () => {
             }
           />
         </Route>
-
+        <Route
+          element={
+            <AdminGuard>
+              <RootLayout />
+            </AdminGuard>
+          }
+        >
+          <Route
+            path={ROUTES.AUTHENTICATED.EVENT_DASHBOARD}
+            element={
+              <TitleWrapper title="CGI | Admin Dashboard">
+                <AdminDashboard />
+              </TitleWrapper>
+            }
+          />
+          <Route
+            path={ROUTES.AUTHENTICATED.EVENT_CREATE}
+            element={
+              <TitleWrapper title="CGI | Create Event">
+                <CreateEvent />
+              </TitleWrapper>
+            }
+          />
+        </Route>
       </Routes>
-    </Suspense>
+    </Suspense >
   );
 };
 

@@ -4,3 +4,4 @@ export { default as Register } from "./auth/Register";
 export { default as AuthCallback } from './AuthCallback';
 export { default as ResetPassword } from './auth/ResetPassword';
 export { default as ForgotPassword } from './auth/ForgotPassword';
+export { default as NotFound } from './NotFound';

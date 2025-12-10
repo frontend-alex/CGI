@@ -8,6 +8,7 @@
 .font-source-code-pro {
   font-family: "Source Code Pro", Arial, sans-serif;
 }
+
 .font-inter {
   font-family: "Inter", Arial, sans-serif;
 }
@@ -54,28 +55,25 @@
 
 :root {
   --heading-color: #200a58;
-  --color-gradient-start-red: #e02b40; /* Vibrant red on the left */
-  --color-gradient-end-purple: #5236ab; /* Deep purple on the right */
+  --color-gradient-start-red: #e02b40;
+  /* Vibrant red on the left */
+  --color-gradient-end-purple: #5236ab;
+  /* Deep purple on the right */
   --color-background-purple: #ece9f6;
   --color-text-white: #ffffff;
-  --color-background-light-white: #efefef; /* White for main text and button background */
+  --color-background-light-white: #efefef;
+  /* White for main text and button background */
 
   /* Gradient Variables */
-  --gradient-horizontal: linear-gradient(
-    to right,
-    var(--color-gradient-start-red),
-    var(--color-gradient-end-purple)
-  );
-  --gradient-vertical: linear-gradient(
-    to bottom,
-    var(--color-gradient-start-red),
-    var(--color-gradient-end-purple)
-  );
-  --gradient-diagonal: linear-gradient(
-    135deg,
-    var(--color-gradient-start-red),
-    var(--color-gradient-end-purple)
-  );
+  --gradient-horizontal: linear-gradient(to right,
+      var(--color-gradient-start-red),
+      var(--color-gradient-end-purple));
+  --gradient-vertical: linear-gradient(to bottom,
+      var(--color-gradient-start-red),
+      var(--color-gradient-end-purple));
+  --gradient-diagonal: linear-gradient(135deg,
+      var(--color-gradient-start-red),
+      var(--color-gradient-end-purple));
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -149,8 +147,20 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
@@ -159,6 +169,7 @@
     height: 0;
     opacity: 0;
   }
+
   to {
     height: var(--radix-collapsible-content-height);
     opacity: 1;
@@ -170,6 +181,7 @@
     height: var(--radix-collapsible-content-height);
     opacity: 1;
   }
+
   to {
     height: 0;
     opacity: 0;

@@ -16,7 +16,7 @@ import {
 import { config } from "@shared/config/config";
 
 
-const PasswordStrengthChecks = lazy(() => import("@/components/PasswordChecker"))
+const PasswordStrengthChecks = lazy(() => import("@/components/password-checker"))
 
 export function ResetPasswordForm({
   resetPasswordForm,

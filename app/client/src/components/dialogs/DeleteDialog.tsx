@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Trash } from "lucide-react";
-import { TriggerWrapper } from "@/components/TriggerWrapper";
+import { TriggerWrapper } from "@/components/trigger-wrapper";
 
 interface DeleteDialogProps {
   icon?: any,

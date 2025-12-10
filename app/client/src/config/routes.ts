@@ -15,21 +15,15 @@ export const PUBLIC_ROUTES = {
 } as const;
 
 export const AUTHENTICATED_ROUTES = {
-  ONBOARDING: "/app/v1/onboarding",
   PROFILE: `${BASE_PATHS.APP}/profile`,
   SETTINGS: `${BASE_PATHS.APP}/settings`,
-  BILLING: `${BASE_PATHS.APP}/billing`,
-  CALENDAR: `${BASE_PATHS.APP}/calendar`,
-  INBOX: (workspaceId: string | number) =>
-    `${BASE_PATHS.APP}/${workspaceId}/inbox`,
-  WORKSPACE: (workspaceId: string | number) =>
-    `${BASE_PATHS.APP}/workspace/${workspaceId}`,
-  WORKSPACE_CHAT: (workspaceId: string | number, chatId: string | number) =>
-    `${BASE_PATHS.APP}/workspace/${workspaceId}/chats/${chatId}`,
-  LIST: (listId: string | number, listName: string) =>
-    `${BASE_PATHS.APP}/${listId}/${listName}`,
-  LIST_SETTINGS: (listId: string | number) =>
-    `${BASE_PATHS.APP}/${listId}/settings`,
+  DASHBOARD: `${BASE_PATHS.APP}/dashboard`,
+  EVENTS: `${BASE_PATHS.APP}/events`,
+  EVENT: (eventId: string | number) => `${BASE_PATHS.APP}/events/${eventId}`,
+
+  //admin routes
+  EVENT_DASHBOARD: `${BASE_PATHS.APP}/event-dashboard`,
+  EVENT_CREATE: `${BASE_PATHS.APP}/event-create`,
 } as const;
 
 export const ROUTE_HELPERS = {

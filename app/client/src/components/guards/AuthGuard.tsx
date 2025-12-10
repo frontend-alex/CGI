@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { ROUTES } from "@/config/routes";
 import { useAuth } from "@/contexts/AuthContext";
-import Loading from "@/components/Loading";
+import Loading from "@/components/loading";
 
 interface AppGuardProps {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ const AppGuard = ({ children }: AppGuardProps) => {
   if (isAuthenticated) {
     return (
       <Navigate
-        to={ROUTES.BASE.APP}
+        to={ROUTES.AUTHENTICATED.DASHBOARD}
         state={{ from: location }}
         replace
       />
