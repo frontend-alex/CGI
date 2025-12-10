@@ -136,7 +136,7 @@ const EventCalendar = ({ align = "bottom" }: { align?: "bottom" | "right" }) => 
                 </div>
             </Card>
 
-            <div className={`flex flex-col gap-3 bg-background rounded-xl p-3 min-w-sm w-full overflow-y-scroll no-scrollbar ${align === "right" ? "" : "max-h-[350px]"}`}>
+            <div className={`flex flex-col gap-3 bg-background rounded-xl p-3 min-w-sm w-full overflow-y-scroll no-scrollbar ${align === "right" ? "max-h-[500px]" : "max-h-[350px]"}`}>
                 {currentMonthEvents.length > 0 ? (
                     currentMonthEvents.map((event, index) => {
                         return (

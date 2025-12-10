@@ -37,7 +37,7 @@ const DashboardEventManagement = () => {
 
     return (
         <div className="p-5 flex flex-col gap-5 bg-muted rounded-lg">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 <div className="flex flex-col gap-3 col-span-3">
 
                     {/* events counter */}
@@ -78,9 +78,6 @@ const DashboardEventManagement = () => {
                     </div>
 
 
-                </div>
-                <div className="col-span-1 flex flex-col gap-3 bg-background rounded-xl p-3">
-                    <EmptyCalendar />
                 </div>
             </div>
             <EventsSection />

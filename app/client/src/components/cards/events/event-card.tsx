@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Pin } from "lucide-react"
+import { Calendar, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { getMonthName } from "@/lib/utils"
@@ -6,14 +6,17 @@ import { getMonthName } from "@/lib/utils"
 export type EventCardProps = {
     image?: string
     category: string[]
+    categoryColors?: string[]
     location: string
     description: string
     date: number
-    year: number;
-    month: number;
+    year: number
+    month: number
     title: string
     time: string
-    subtitle?: string
+    totalTickets: number
+    totalTicketsLeft: number
+    status: "active" | "upcoming" | "past" | "cancelled"
     hasBorder?: boolean
 }
 
@@ -57,8 +60,8 @@ export function EventCard({
                         <p className="text-xs text-muted-foreground">{time}</p>
                     </div>
                 </div>
-                <Button className="bg-(--color-gradient-start-red) hover:bg-(--color-gradient-start-red)/80 text-white">
-                    View Details
+                <Button>
+                    Book
                 </Button>
             </CardFooter>
         </Card>
