@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDropzone } from "react-dropzone";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, Upload, X } from "lucide-react";
 
 import {
     Popover,
@@ -38,6 +38,7 @@ import {
     createEventSchema,
     type CreateEventSchemaType,
 } from "@shared/schemas/event/event.schema";
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
 
 const CreateEventForm = ({ onPreviewChange }: { onPreviewChange: (data: any) => void }) => {
     const form = useForm<CreateEventSchemaType>({
@@ -120,7 +121,21 @@ const CreateEventForm = ({ onPreviewChange }: { onPreviewChange: (data: any) => 
                                                 className="border-2 border-dashed rounded-lg p-6 flex justify-center items-center cursor-pointer"
                                             >
                                                 <input {...getInputProps()} />
-                                                {isDragActive ? "Drop the image..." : "Drag & drop or click to upload"}
+                                                <div className="flex flex-col items-center gap-3 justify-center">
+
+
+                                                </div>
+                                                <Empty>
+                                                    <EmptyHeader>
+                                                        <EmptyMedia variant="icon">
+                                                            <Upload />
+                                                        </EmptyMedia>
+                                                        <EmptyTitle>Upload Image</EmptyTitle>
+                                                        <EmptyDescription>
+                                                            {isDragActive ? "Drop the image..." : "Drag & drop or click to upload"}
+                                                        </EmptyDescription>
+                                                    </EmptyHeader>
+                                                </Empty>
                                             </div>
                                         </FormControl>
                                         <FormMessage />
@@ -238,7 +253,7 @@ const CreateEventForm = ({ onPreviewChange }: { onPreviewChange: (data: any) => 
                                         align="start"
                                         side="bottom"
                                         sideOffset={8}
-                                        className="p-0 w-[650px] rounded-md bg-popover border shadow-md"
+                                        className="p-0 w-full rounded-md bg-popover border shadow-md"
                                     >
                                         {!isMultiDay ? (
                                             <Calendar
@@ -246,7 +261,7 @@ const CreateEventForm = ({ onPreviewChange }: { onPreviewChange: (data: any) => 
                                                 selected={startDate}
                                                 captionLayout="dropdown"
                                                 onSelect={(d) => {
-                                                    form.setValue("startDate", d);
+                                                    form.setValue("startDate", d as any);
                                                     setCalendarOpen(false);
                                                 }}
                                             />

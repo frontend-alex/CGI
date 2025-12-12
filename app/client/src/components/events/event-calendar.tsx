@@ -8,7 +8,7 @@ import EmptyCalendar from "../empty/empty-calendar"
 import { events } from "@/constants/data"
 import { randomItem } from "@/lib/utils"
 
-const EventCalendar = ({ align = "bottom" }: { align?: "bottom" | "right" }) => {
+const EventCalendar = ({ align = "vertical" }: { align?: "vertical" | "horizontal" }) => {
     const [currentMonth, setCurrentMonth] = useState(new Date(2025, 11, 1))
     const [selectedDate, setSelectedDate] = useState(14)
 
@@ -21,17 +21,13 @@ const EventCalendar = ({ align = "bottom" }: { align?: "bottom" | "right" }) => 
 
         const days = []
 
-        // Previous month days
         for (let i = firstDay - 1; i >= 0; i--) {
             days.push({ date: daysInPrevMonth - i, isCurrentMonth: false })
         }
-
-        // Current month days
         for (let i = 1; i <= daysInMonth; i++) {
             days.push({ date: i, isCurrentMonth: true })
         }
 
-        // Next month days
         const remainingDays = 42 - days.length
         for (let i = 1; i <= remainingDays; i++) {
             days.push({ date: i, isCurrentMonth: false })
@@ -64,8 +60,8 @@ const EventCalendar = ({ align = "bottom" }: { align?: "bottom" | "right" }) => 
     const eventDates = currentMonthEvents.map((e) => e.date)
 
     return (
-        <div className={`flex flex-col gap-3 w-full ${align === "right" ? "flex-col lg:flex-row gap-5" : "flex-col"}`}>
-            <Card className={`p-6 shadow-none border-none min-w-sm ${align === "right" ? "h-full" : ""}`}>
+        <div className={align === "horizontal" ? "grid grid-cols-2 gap-3" : "flex flex-col gap-3 w-full"}>
+            <Card className={`p-6 shadow-none border-none ${align === "horizontal" ? "h-full" : ""}`}>
                 {/* Header */}
                 <div className="mb-2 flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -136,7 +132,7 @@ const EventCalendar = ({ align = "bottom" }: { align?: "bottom" | "right" }) => 
                 </div>
             </Card>
 
-            <div className={`flex flex-col gap-3 bg-background rounded-xl p-3 min-w-sm w-full overflow-y-scroll no-scrollbar ${align === "right" ? "max-h-[500px]" : "max-h-[350px]"}`}>
+            <div className={`flex flex-col gap-3 bg-background rounded-xl p-3 w-full overflow-y-scroll no-scrollbar ${align === "horizontal" ? "max-h-[500px]" : "max-h-[350px]"}`}>
                 {currentMonthEvents.length > 0 ? (
                     currentMonthEvents.map((event, index) => {
                         return (

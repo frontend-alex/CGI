@@ -54,7 +54,7 @@ export function EventListCard({
                     ))}
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-1">{title}</h3>
-                <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
+                <p className="text-sm text-muted-foreground line-clamp-2 max-w-[400px]">{description}</p>
             </div>
 
             {/* Location & Date */}
@@ -72,7 +72,7 @@ export function EventListCard({
             </div>
 
             {/* Progress */}
-            <div className="min-w-[120px]">
+            <div className="-w-[120px]">
                 <div className="flex items-center gap-2 mb-1">
                     <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                         <div
@@ -88,9 +88,11 @@ export function EventListCard({
             </div>
 
             {/* Tickets Left */}
-            <div className="flex items-center gap-2 min-w-[80px]">
-                <Tickets className="h-4 w-4 text-muted-foreground" />
-                <p className="text-lg font-semibold text-foreground">{totalTicketsLeft}</p>
+            <div className="flex flex-col items-center min-w-[80px]">
+                <div className="flex items-center gap-2">
+                    <Tickets className="h-4 w-4 text-muted-foreground" />
+                    <p className="text-lg font-semibold text-foreground">{totalTicketsLeft}</p>
+                </div>
                 <p className="text-xs text-muted-foreground">Tickets Left</p>
             </div>
 

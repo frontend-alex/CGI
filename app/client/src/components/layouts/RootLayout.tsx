@@ -11,7 +11,7 @@ const RootLayout = () => {
       <AppSidebar />
       <main className="flex flex-col w-full bg-background">
         <BreadCrumps />
-        <div className="p-5">
+        <div>
           <Outlet />
         </div>
       </main>

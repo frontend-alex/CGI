@@ -1,4 +1,4 @@
-import { Calendar, ChevronRight, Nfc, Pen, TicketCheck } from "lucide-react";
+import { Calendar, Nfc, Pen, TicketCheck } from "lucide-react";
 import EventCounterBox, { type EventCounterBoxProps } from "@/components/events/event-counter-box";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { getUserInitials } from "@/lib/utils";
@@ -6,10 +6,16 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/config/routes";
 import { Button } from "@/components/ui/button";
-import EventUpcoming from "@/components/events/event-upcoming";
-import EventCalendar from "@/components/events/event-calendar";
-import EmptyCalendar from "@/components/empty/empty-calendar";
-import EventsSection from "@/components/events/events-section";
+
+import { lazy, Suspense } from "react";
+import { EventsCatalogSkeleton } from "@/components/skeletons/events/event-catalog-skeleton";
+import EventCardSkeleton from "@/components/skeletons/cards/event-card-skeleton";
+import CalendarCardSkeleton from "@/components/skeletons/cards/calendar-card-skeleton";
+
+
+const LazyEventUpcoming = lazy(() => import("@/components/events/event-upcoming"))
+const LazyEventCalendar = lazy(() => import("@/components/events/event-calendar"))
+const LazyEventsSection = lazy(() => import("@/components/events/events-section"))
 
 const events: EventCounterBoxProps[] = [
     {
@@ -36,7 +42,7 @@ const DashboardEventManagement = () => {
     if (!user) return null;
 
     return (
-        <div className="p-5 flex flex-col gap-5 bg-muted rounded-lg">
+        <div className="p-5 flex flex-col gap-5 bg-muted">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 <div className="flex flex-col gap-3 col-span-3">
 
@@ -73,14 +79,18 @@ const DashboardEventManagement = () => {
                     {/* profile box */}
 
                     <div className="flex flex-col justify-start lg:flex-row gap-5">
-                        <EventCalendar align="right" />
-                        <EventUpcoming />
+                        <Suspense fallback={<CalendarCardSkeleton />}>
+                            <LazyEventCalendar align="horizontal" />
+                        </Suspense>
+                        <Suspense fallback={<EventCardSkeleton />}>
+                            <LazyEventUpcoming />
+                        </Suspense>
                     </div>
-
-
                 </div>
             </div>
-            <EventsSection />
+            <Suspense fallback={<EventsCatalogSkeleton count={4} />}>
+                <LazyEventsSection />
+            </Suspense>
         </div>
     );
 };

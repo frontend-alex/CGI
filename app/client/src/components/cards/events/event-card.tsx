@@ -8,7 +8,8 @@ export type EventCardProps = {
     category: string[]
     categoryColors?: string[]
     location: string
-    description: string
+    subtitle?: string;
+    description?: string
     date: number
     year: number
     month: number
@@ -33,9 +34,9 @@ export function EventCard({
     hasBorder = false
 }: EventCardProps) {
     return (
-        <Card className={`overflow-hidden p-0 w-full shadow-lg ${hasBorder ? "border-2 border-(--color-gradient-start-red)" : "border-none shadow-none"}`}>
-            <div className="relative">
-                <img src={image} alt={title} className="w-full h-48 object-cover" />
+        <Card className={`overflow-hidden p-0 w-full shadow-lg group ${hasBorder ? "border-2 border-(--color-gradient-start-red)" : "border-none shadow-none"}`}>
+            <div className="relative overflow-hidden">
+                <img src={image} alt={title} className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
                 <div className="absolute flex items-center gap-1 top-3 left-3">
                     {category.map((cat, i) => (
                         <span key={i} className="bg-background px-3 py-1 rounded-full text-xs font-medium">{cat}</span>

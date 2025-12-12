@@ -18,8 +18,11 @@ export default function CreateEventPage() {
 
             {/* Sticky Preview */}
             <div className="col-span-1 relative">
-                <div className="hidden lg:block fixed top-20 left-2/3 max-w-[400px] w-full">
+                <div className="hidden lg:block fixed top-20 right-5 max-w-[400px] w-full">
                     <EventCard
+                        status="active"
+                        totalTickets={0}
+                        totalTicketsLeft={100}
                         hasBorder
                         image={
                             preview?.image instanceof File

@@ -150,7 +150,7 @@ const BreadCrumps = () => {
             <div className="flex items-center gap-2">
                 {isAdmin && (
                     <Button
-                        onClick={commandPalette.open}
+                        onClick={() => navigate(ROUTES.AUTHENTICATED.EVENT_CREATE)}
                     >
                         Create Event
                         <Plus className="size-4" />
