@@ -1,3 +1,9 @@
+# CGI
+
+For the event application's current scope, setup, architecture, and verification commands, read the [CGI project guide](docs/PROJECT_GUIDE.md). The original MERN foundation documentation below is retained for reference; its generic feature claims do not establish completed CGI event APIs.
+
+---
+
 # MonoMERN Stack Boilerplate
 
 A production-ready MERN stack boilerplate with TypeScript, authentication, and modern development tools.
